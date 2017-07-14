@@ -29,8 +29,8 @@ $this->title = 'LightIT';
                     <li><a href="/site/seven">На 7 Дней <span style="font-size:14px; float: right;"><?php echo $count_seven;?></span></a></li>
                 </ul>
                 <h4>Проекты</h4>
-             <?php var_dump($url);?>
-              <?php $id = Yii::$app->request->get('id');?>
+             
+             
              
                 <ul class="cat-menu">
                 <?php if(!empty($query)): ?>
