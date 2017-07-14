@@ -32,7 +32,7 @@ $this->title = 'LightIT';
                         <?php echo FA::icon('trash-o');?>
                     </a>
 
-                      <?= Html::a($project->title, ['/projects/listing', 'id' => $project->id]);?>
+                      <?= Html::a($project->title, ['/site/listing', 'id' => $project->id]);?>
                          
                         
                         <?php echo count($project->listViewTasks); ?>
