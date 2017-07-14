@@ -36,7 +36,7 @@ $this->title = 'LightIT';
                     <a href="/projects/delete?id=<?=$project->id?>" data-method="post" class="one">
                         <?php echo FA::icon('trash-o');?>
                     </a>
-                    <a href="/site/list?id=<?=$project->id?>"><?=$project->title?></a>
+                    <a href="/site/listing?id=<?=$project->id?>"><?=$project->title?></a>
 
                         
                         <?php echo count($project->listViewTasks); ?>
