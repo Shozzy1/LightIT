@@ -117,12 +117,11 @@ class ProjectsController extends Controller
      */
     public function actionDelete($id)
     {
-        $date = date("Y-m-d");
-        $lde = Tasks::find()->where('DATE (end_date)>=:cur_date AND project_id =:id ', array (':cur_date'=>$date, ':id'=>$id))->all();
+        
         $del = Tasks::find()->where(['project_id'=>$id, 'status' =>2])->all();
         $oo = count($del);
-        $cc = count($lde);
-        if($oo > 0 or $cc>0){
+      
+        if($oo > 0){
 
             return $this->redirect(['/']); 
             
