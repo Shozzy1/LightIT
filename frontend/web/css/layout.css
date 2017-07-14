@@ -1,0 +1,128 @@
+
+.my-navbar{
+	background-color: #1E90FF;
+}
+.my-navbar a{
+	color: #ffffff;
+	font-weight: bold;
+}
+
+.my-navbar a:hover{
+	color: #000000;
+}
+.navbar-nav > .active > a:hover {
+background-color: #1E90FF;
+color: #000000;
+}
+.navbar-nav li a:hover{
+	background-color: #1E90FF;
+	color:black;
+}
+.navbar-nav  > .active > a{
+	background-color: #4169E1;
+	color:#ffffff;
+}
+.navbar-nav li .btn{
+	color: #ffffff;
+	font-weight: bold;
+}
+.wrap{
+	background-color: #DCDCDC;
+  	
+}
+.side{
+	background-color: #ffffff;
+	
+
+ }
+.side-menu {
+ list-style-type: none;
+ font-size: 18px;
+ padding: 15px;
+ font-weight: bold;
+ color: #808080;
+}
+.side-menu ul{
+	margin-bottom: 25px;
+}
+.side-menu li{
+	padding-bottom: 20px;
+}
+.side-menu li a{
+ list-style-type: none;
+ text-decoration: none;
+
+ font-weight: bold;
+ color: #808080;
+}
+h4{
+	padding-left: 15px;
+	margin-top: 30px;
+	font-weight: bold;
+ 	color: #808080;
+ 	text-decoration: underline;
+}
+.cat-menu{
+ list-style-type: none;
+ font-size: 15px;
+ padding: 15px;
+
+ color: #808080;
+}
+.cat-menu li{
+	padding-bottom: 10px;
+}
+.cat-menu .linked{
+	text-decoration: none;
+	color: red;
+	font-weight: bold;
+
+}
+.side .linked{
+	text-decoration: none;
+	color: red;
+	font-weight: bold;
+}
+.cat-menu a{
+	text-decoration: none;
+	color: #808080;
+	font-weight: bold;
+}
+.cat-menu .one {
+   visibility: hidden;
+   float: right;
+   
+}
+.cat-menu li:hover .one {
+   visibility: visible;
+} 
+.circle{
+	float:left; margin-top: 5px; margin-right: 10px; width: 10px; height: 10px;
+	-moz-border-radius: 50px; -webkit-border-radius: 50px; border-radius: 50px; 
+} 
+.circle-red{
+	float:left; margin-top: 5px; margin-right: 10px; width: 10px; height: 10px;
+	-moz-border-radius: 50px; -webkit-border-radius: 50px; border-radius: 50px;
+	background: red; 
+} 
+.kvadr{
+	float:left; margin-top: 5px; margin-right: 10px; width: 13px; height: 13px;
+	border-color: black; border-radius: 0.5px; border-style: solid; 
+} 
+.dropdown .one {
+    position: relative;
+    display: block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 5px 5px;
+    z-index: 1;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
