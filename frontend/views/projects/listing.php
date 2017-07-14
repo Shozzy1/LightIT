@@ -17,55 +17,7 @@ use yii\helpers\Url;
 $this->title = 'LightIT';
 ?>
 
-<div class="wrap">
-
-
-    
-
-        <div class="row">
-            <div class="col-md-2">
-                <ul class="side-menu">
-                    <li><a href="/">На Сегодня <span style="font-size:14px; float: right;"><?php echo $count_today;?></span></a></li>
-                    <li><a href="/site/seven">На 7 Дней <span style="font-size:14px; float: right;"><?php echo $count_seven;?></span></a></li>
-                </ul>
-                <h4>Проекты</h4>
-             <?php var_dump($url);?>
-              <?php $id = Yii::$app->request->get('id');?>
-             
-                <ul class="cat-menu">
-                <?php if(!empty($query)): ?>
-                <?php foreach($query as $project): ?>
-
-                   <li>
-                    <p class="circle" style="background: <?=$project->color?>;"></p>
-                    <a href="/projects/delete?id=<?=$project->id?>" data-method="post" class="one">
-                        <?php echo FA::icon('trash-o');?>
-                    </a>
-                     <?= Html::a($project->title, ['site/listing', 'id'=>$id]); ?>  
-                        <?php echo count($project->listViewTasks); ?>
-                    <a href="/projects/update?id=<?=$project->id?>" class="one">
-                        <?php echo FA::icon('pencil');?>
-                    </a>
-                    </li>
-                    <?php endforeach; ?>
-                <?php endif; ?> 
-                  <?php  
-                if (\Yii::$app->user->isGuest) {
-                echo "Вы должны быть авторизированы";
-                }else{
-                    Pjax::begin([
-                    'enablePushState' =>false,
-                ]); 
-                   ?><a href="/projects/cat" class="linked">+ Добавить проект</a>
-                   <?php Pjax::end();
-
-                } ?>
-                </ul> 
-            </div>
-
-        
-            <div class="col-md-8 side">
-                <h3>Сегодня <span style=" font-size: 14px; color:#696969; font-weight: bold;"><?php echo date("l d M")?></span></h3>
+                <h3>Сортировка <span style=" font-size: 14px; color:#696969; font-weight: bold;"><?php echo date("l d M")?></span></h3>
 
                 <ul class="cat-menu">
                 <p>Не выполнены</p>
@@ -165,24 +117,13 @@ $this->title = 'LightIT';
                     <?php endforeach; ?>
                     <?php endif; ?> 
                 </ul>
-                  <?php  
-                if (\Yii::$app->user->isGuest) {
-                echo "Вы должны быть авторизированы";
-                }else{
-                    Pjax::begin([
-                    'enablePushState' =>false,
-                ]); ?>
-                <p><a href="/tasks/cat" class="linked">+ Добавить задачу</a><p>
-                     <?php Pjax::end();
-                 }?>
-            </div>
+               
+            
                 
-            <div class="col-md-2"> 
-            </div>
-        </div>
+           
+        
 
-    </div>
-</div>
+   
 
 
 

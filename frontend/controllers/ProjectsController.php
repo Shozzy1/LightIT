@@ -85,6 +85,15 @@ class ProjectsController extends Controller
        return $this->renderAjax('createajax',['model' => new Projects()]);
    }
     }
+     public function actionListing($id)
+    {
+        //$url =Yii::$app->request->get('id');
+        $date = date("Y-m-d");
+        $tom = date("Y-m-d",mktime(0, 0, 0, date("m")  , date("d")+6, date("Y")));
+        $red = Tasks::find()->where('DATE (end_date)<:cur_date AND project_id = :id', array (':cur_date'=>$date, ':id'=>$id))->orderBy(['priority' => SORT_DESC])->all();
+        $main = Tasks::find()->where('DATE (end_date)=:end_date AND status != 1 AND status != 0 AND project_id =:id', array (':end_date'=>$date, ':id'=>$id))->orderBy(['priority' => SORT_DESC])->all();
+        return $this->renderAjax('listing', compact('main','red'));
+    }
 
     
 

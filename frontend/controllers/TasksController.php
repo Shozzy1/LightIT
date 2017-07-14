@@ -8,7 +8,7 @@ use common\models\TasksSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use common\models\Projects;
 /**
  * TasksController implements the CRUD actions for Tasks model.
  */
@@ -93,6 +93,21 @@ class TasksController extends Controller
         }
         else
             echo $this->renderAjax('createajax',['model'=>$model]);
+    }
+
+ public function actionSeven()
+    {
+        $date = date("Y-m-d");
+        $tom = date("Y-m-d",mktime(0, 0, 0, date("m")  , date("d")+6, date("Y")));
+        $main = Tasks::find()->select('id,title,priority,end_date,status,project_id')->where('DATE (end_date)<=:end_date AND DATE (end_date)>=:cur_date AND status != 1 AND status != 0', array (':end_date'=>$tom, ':cur_date'=>$date))->orderBy(['priority' => SORT_DESC])->all();
+        return $this->renderAjax('seven', compact('main'));
+    }
+
+ public function actionArhive()
+    {
+
+        $main = Tasks::find()->where(['status'=> 1])->orderBy(['priority' => SORT_DESC])->all();
+        return $this->renderAjax('arhive', compact('main'));
     }
 
 

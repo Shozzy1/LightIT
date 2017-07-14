@@ -17,8 +17,27 @@ $this->title = 'LightIT';
             
             <div class="col-md-2">
                 <ul class="side-menu">
-                    <li><a href="/">На Сегодня <span style="font-size:14px; float: right;"><?php echo $count_today;?></span></a></li>
-                    <li><a href="/site/seven">На 7 Дней <span style="font-size:14px; float: right;"><?php echo $count_seven;?></span></a></li>
+                    <li>
+                        <a href="/">На Сегодня <span style="font-size:14px; float: right;"><?php echo $count_today;?></span></a>
+                    </li>
+                    <li>
+                       <div id="seven">
+                        <?php echo Html::a(
+                        '7 days', 
+                        ['/tasks/seven'],
+                        ['data-pjax'=> '#boxPajax']) ?>
+                        <span style="font-size:14px; float: right;"><?php echo $count_seven;?></span>
+                        </div>
+                       
+                    </li>
+                    <li>
+                        <div id="arhive">
+                        <?php echo Html::a(
+                        'Архив', 
+                        ['/tasks/arhive'],
+                        ['data-pjax'=> '#boxPajax']) ?>
+                        </div>
+                    </li>
                 </ul>
                 <h4>Проекты</h4>
                 
@@ -31,8 +50,11 @@ $this->title = 'LightIT';
                     <a href="/projects/delete?id=<?=$project->id?>" data-method="post" class="one">
                         <?php echo FA::icon('trash-o');?>
                     </a>
-
-                      <?= Html::a($project->title, ['/projects/listing', 'id' => $project->id]);?>
+                        <div id="listing">
+                        <?php echo Html::a(
+                        $project->title, ['/projects/listing', 'id' => $project->id],['data-pjax'=> '#boxPajax']) ?>
+                        </div>
+                     
                          
                         
                         <?php echo count($project->listViewTasks); ?>
@@ -57,7 +79,8 @@ $this->title = 'LightIT';
             </div>
 
         
-            <div class="col-md-8 side">
+            <div  class="col-md-8 side">
+               <?php Pjax::begin(['id'=>'boxPajax', 'linkSelector'=>'#arhive a, #seven a, #listing a']); ?>
                 <h3>Сегодня <span style=" font-size: 14px; color:#696969; font-weight: bold;"><?php echo date("l d M")?></span></h3>
                     
                 <ul class="cat-menu">
@@ -156,16 +179,21 @@ $this->title = 'LightIT';
                     <?php endforeach; ?>
                     <?php endif; ?> 
                 </ul>
+
+                <?php Pjax::end();?>
+
                   <?php  
                 if (\Yii::$app->user->isGuest) {
                 echo "Вы должны быть авторизированы";
                 }else{
                     Pjax::begin([
                     'enablePushState' =>false,
+                    'id' => 'boxCreatetask',
                 ]); ?>
                 <p><a href="/tasks/cat" class="linked">+ Добавить задачу</a><p>
                      <?php Pjax::end();
                  }?>
+                
             </div>
             <div class="col-md-2"></div>
   </div>  

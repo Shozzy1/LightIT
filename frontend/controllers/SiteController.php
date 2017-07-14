@@ -97,52 +97,9 @@ class SiteController extends \yii\web\Controller
         return $this->render('index', compact('query','main', 'count_today', 'count_seven', 'not_complete', 'red'));
     }
 
-   public function actionSeven()
-    {
-       
-        $date = date("Y-m-d");
-        $tom = date("Y-m-d",mktime(0, 0, 0, date("m")  , date("d")+6, date("Y")));
-        $query = Projects::find()->select('id,title,color')->all();
-        $main = Tasks::find()->select('id,title,priority,end_date,status,project_id')->where('DATE (end_date)<=:end_date AND DATE (end_date)>=:cur_date AND status != 1 AND status != 0', array (':end_date'=>$tom, ':cur_date'=>$date))->orderBy(['priority' => SORT_DESC])->all();
-        $count_today = Tasks::find()->where('DATE (end_date)=:end_date AND status != 1 AND status != 0', array (':end_date'=>$date))->count();
-        $count_seven = Tasks::find()->where('DATE (end_date)<=:end_date AND DATE (end_date)>=:cur_date AND status != 1 AND status != 0', array (':end_date'=>$tom, ':cur_date'=>$date))->count();
-       
-
-        return $this->render('seven', compact('query','main', 'count_today', 'count_seven'));
-    }
-
-    public function actionListing($id)
-    {
-        //$url =Yii::$app->request->get('id');
-        $date = date("Y-m-d");
-        $tom = date("Y-m-d",mktime(0, 0, 0, date("m")  , date("d")+6, date("Y")));
-        $not_complete = Tasks::find()->where(['status'=>0, 'id'=> $id])->count();
-        $red = Tasks::find()->where('DATE (end_date)<:cur_date AND id = :ids', array (':cur_date'=>$date, ':ids'=>$id))->orderBy(['priority' => SORT_DESC])->all();
-        $stat = Tasks::find()->where(['status' => 0, 'id'=>$id])->orderBy(['priority' => SORT_DESC])->all();
-        $query = Projects::find()->select('id,title,color')->all();
-        $main = Tasks::find()->select('id,title,priority,end_date,status,project_id')->where('DATE (end_date)=:end_date AND status != 1 AND status != 0 AND id =:id', array (':end_date'=>$date, ':id'=>$id))->orderBy(['priority' => SORT_DESC])->all();
-        $count_today = Tasks::find()->where('DATE (end_date)=:end_date AND status != 1 AND status != 0 AND id =:id', array (':end_date'=>$date, ':id'=>$id))->count();
-        $count_seven = Tasks::find()->where('DATE (end_date)<=:end_date AND DATE (end_date)>=:cur_date AND status != 1 AND status != 0 AND id =:id', array (':end_date'=>$tom, ':cur_date'=>$date, ':id'=>$id))->count();
-       
-
-        return $this->render('listing', compact('query','main', 'count_today', 'count_seven', 'not_complete', 'red', 'stat'),['id' => $id]);
-    }
-     public function actionArhive()
-    {
-       
-        $date = date("Y-m-d");
-        $tom = date("Y-m-d",mktime(0, 0, 0, date("m")  , date("d")+6, date("Y")));
-       
-       
-        $query = Projects::find()->select('id,title,color')->all();
-        $main = Tasks::find()->where(['status'=> 1])->orderBy(['priority' => SORT_DESC])->all();
-        $count_today = Tasks::find()->where('DATE (end_date)=:end_date AND status != 1 AND status != 0', array (':end_date'=>$date))->count();
-         $count_seven = Tasks::find()->where('DATE (end_date)<=:end_date AND DATE (end_date)>=:cur_date AND status != 1 AND status != 0', array (':end_date'=>$tom, ':cur_date'=>$date))->count();
-       
-
-        return $this->render('arhive', compact('query','main', 'count_today', 'count_seven'));
-    }
-
+ 
+   
+    
 
     /**
      * Logs in a user.
